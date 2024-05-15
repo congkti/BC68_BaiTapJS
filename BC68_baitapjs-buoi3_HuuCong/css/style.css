@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --colorYe: #eebc02;
+  --colorYeDark: #d07e01;
+  --colorBlueDark: #2e4276;
+  --colorVio: #ec90bb;
+  --blueGradient: linear-gradient(
+    45deg,
+    var(--colorBlueDark) 0%,
+    var(--colorVio) 100%
+  );
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 1px solid rgba(200, 200, 200, 0);
+}
+::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+  border: 1px solid rgba(200, 200, 200, 0);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  border: 4px solid rgba(255, 255, 255, 0);
+  background-clip: content-box;
+  background-color: var(--colorYe);
+}
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 12px;
+  border: 4px solid rgba(255, 255, 255, 0);
+  background-clip: content-box;
+  background-color: var(--colorVio);
+}
+::-webkit-scrollbar-corner {
+  background-color: #444;
+}
+body {
+  background: url(https://source.unsplash.com/1600x900/) no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  font-family: "Roboto Flex", sans-serif;
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: transparent;
+  max-width: fit-content;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.5;
+  text-transform: uppercase;
+  background-color: var(--colorVio);
+  background-image: var(--blueGradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+#v-pills-tabContent button {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px;
+  text-transform: uppercase;
+  width: fit-content;
+  height: max-content;
+  background-color: var(--colorYe);
+  border: none;
+  outline: none;
+}
+#v-pills-tabContent button:hover {
+  background-color: var(--colorYe);
+  background-image: var(--blueGradient);
+}
+#v-pills-tabContent input {
+  border-radius: 0;
+  border: 1px solid var(--colorYe);
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+  color: var(--colorYe);
+  height: 50px;
+}
+#v-pills-tabContent input:focus,
+#v-pills-tabContent input:hover {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--colorVio);
+  border-style: dotted;
+}
+.btnClear {
+  padding: 3px 7px;
+  position: absolute;
+  right: 15px;
+  top: -5px;
+  font-size: 9px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #999;
+  background-color: #555;
+  margin-top: 10px;
+}
+.btnClear:hover {
+  border-color: #999;
+}
+/* ==================== */
+#v-pills-tab {
+  background-color: #141213;
+  border-radius: 10px 0 0 10px;
+  /* overflow: hidden; */
+}
+#v-pills-tab button {
+  padding: 0;
+  border-radius: 0;
+  text-align: left;
+  height: 65px;
+  /* margin-bottom: 30px; */
+}
+#v-pills-tab button:last-of-type {
+  margin-bottom: 0;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #141213;
+  background-image: linear-gradient(
+    to left,
+    #141213 0%,
+    #474546 45%,
+    #474546 100%
+  );
+}
+#v-pills-tab button span {
+  font-size: 98px;
+  font-weight: 500;
+  line-height: 68px;
+  color: var(--colorYe);
+}
+
+#v-pills-tab button span .percent {
+  display: inline-block;
+  background-color: var(--colorYe);
+  height: 100%;
+  float: left;
+  margin-right: -11px;
+  background-image: linear-gradient(
+    to right,
+    var(--colorYeDark) 0%,
+    var(--colorYe) 75%,
+    var(--colorYe) 100%
+  );
+}
+#v-pills-tab button:first-of-type,
+#v-pills-tab button:first-of-type span .percent {
+  border-radius: 10px 0 0;
+}
+/* #v-pills-tab button:last-of-type,
+#v-pills-tab button:last-of-type span .percent {
+  border-radius: 0 0 0 10px;
+} */
+.per-20 {
+  width: 12%;
+}
+.per-40 {
+  width: 25%;
+}
+.per-60 {
+  width: 33%;
+}
+.per-80 {
+  width: 40%;
+}
+.per-100 {
+  width: 55%;
+}
+#v-pills-tabContent {
+  color: #fff;
+  /* border: 2px solid #141213; */
+  height: 85vh;
+  overflow: auto;
+  border-radius: 0 10px 10px 10px;
+  background-color: #505455;
+  background-image: linear-gradient(to right, #141213 0%, #474546 100%);
+}
+/* bài tập */
+#v-pills-tabContent input::placeholder {
+  font-size: 11px;
+  color: #999;
+}
+#v-pills-tabContent span.number .increase,
+#v-pills-tabContent span.number .decrease {
+  position: absolute;
+  right: 25px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  text-indent: -99999px;
+  cursor: pointer;
+}
+#v-pills-tabContent span.number .increase {
+  border-width: 0 10px 8px 10px;
+  border-color: transparent transparent var(--colorVio) transparent;
+  top: 42px;
+}
+#v-pills-tabContent span.number .increase:hover {
+  border-color: transparent transparent var(--colorYe) transparent;
+}
+#v-pills-tabContent span.number .decrease {
+  border-width: 8px 10px 0 10px;
+  border-color: var(--colorVio) transparent transparent transparent;
+  bottom: 10px;
+}
+#v-pills-tabContent span.number .decrease:hover {
+  border-color: var(--colorYe) transparent transparent transparent;
+}
+#v-pills-tabContent span.number i {
+  opacity: 0;
+  transition: all 0.5s;
+}
+#v-pills-tabContent span.number:hover i {
+  opacity: 1;
+}
+.result {
+  line-height: 2;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.result .salary {
+  color: var(--colorYe);
+  padding: 8px 30px;
+  border: 1px dotted var(--colorYe);
+}
+/* Bài 1 */
+
+/* ====================| CSS responsive |================= */
+/* `xxl` applies to x-large devices (large desktops, less than 1400px) */
+@media screen and (max-width: 1399.98px) {
+}
+
+/* `xl` applies to large devices (desktops, less than 1200px) */
+@media screen and (max-width: 1199.98px) {
+  #v-pills-tab button {
+    height: 55px;
+  }
+  #v-pills-tab button span {
+    font-size: 80px;
+    line-height: 58px;
+  }
+}
+/* fix home product gallery only */
+@media screen and (max-width: 1199.98px) and (min-width: 992px) {
+}
+
+/* `lg` applies to medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991.98px) {
+  .per-20 {
+    width: 10%;
+  }
+  .per-40 {
+    width: 13%;
+  }
+  .per-60 {
+    width: 22%;
+  }
+  .per-80 {
+    width: 30%;
+  }
+  .per-100 {
+    width: 32%;
+  }
+}
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 767.98px) {
+  #v-pills-tab {
+    border-radius: 10px 10px 0 0;
+  }
+  #v-pills-tab button span {
+    font-size: 40px;
+  }
+  #v-pills-tab button {
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+  }
+  #v-pills-tab button span .percent {
+    background-color: transparent;
+    margin-right: 10px;
+    width: 0;
+    border-radius: 8px 8px 0 0;
+  }
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    background-color: #141213;
+    background-image: linear-gradient(
+      to top,
+      #141213 0%,
+      #474546 45%,
+      #474546 100%
+    );
+  }
+  #v-pills-tab button:first-of-type,
+  #v-pills-tab button:first-of-type span .percent {
+    border-radius: 8px 8px 0 0;
+  }
+  #v-pills-tabContent {
+    border-radius: 0 0 10px 10px;
+  }
+  #v-pills-tabContent button {
+    /* max-width: 100%; */
+    width: 100%;
+  }
+}
+
+/* `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media screen and (max-width: 575.98px) {
+}
+/* fix to xx-small devices */
+@media screen and (max-width: 500px) {
+}
+@media screen and (max-width: 328px) {
+}
+/* ==================| end CSS responsive |=============== */
