@@ -99,6 +99,12 @@ h6 {
   border-color: var(--colorVio);
   border-style: dotted;
 }
+#v-pills-tabContent input:disabled {
+  color: #555;
+  border: 1px solid #555;
+}
+#v-pills-tabContent input:disabled:hover {
+}
 .btnClear {
   padding: 3px 7px;
   position: absolute;
@@ -280,6 +286,9 @@ h6 {
   }
   .per-100 {
     width: 32%;
+  }
+  #v-pills-tabContent #btnTinhDienTich {
+    width: 100%;
   }
 }
 /* `md` applies to small devices (landscape phones, less than 768px) */

@@ -24,11 +24,18 @@ function changeValue(id, buocNhay = 1) {
 
 changeValue("#numberLuongCB", 100);
 changeValue("#numberNgayLam");
+
 changeValue("#numberSoThuNhat");
 changeValue("#numberSoThuHai");
 changeValue("#numberSoThuBa");
 changeValue("#numberSoThuTu");
 changeValue("#numberSoThuNam");
+
+changeValue("#numberTienUSD");
+changeValue("#numberTyGia");
+
+changeValue("#numberChieuDai");
+changeValue("#numberChieuRong");
 
 function xoaForm(elInput, elOutput) {
   let input = document.querySelector(elInput);
@@ -36,6 +43,18 @@ function xoaForm(elInput, elOutput) {
   input.value = "";
   input.focus();
   output.style.opacity = "0";
+}
+function xoaForm2(elInput, elOutput1, elOutput2) {
+  let input = document.querySelector(elInput);
+  let output1 = document.querySelector(elOutput1);
+  let output2 = document.querySelector(elOutput2);
+  input.value = "";
+  input.focus();
+  output1.style.opacity = "0";
+  output2.style.opacity = "0";
+}
+function showElement(elm) {
+  document.querySelector(elm).style.opacity = "1";
 }
 // .toLocaleString("vi-VN")
 // .toLocaleString("vi-VN", {style:"currency", currency:"VND"})
@@ -71,7 +90,7 @@ document.getElementById("btnTinhTienLuong").onclick = () => {
   } else {
     let luongThucNhan = luongCB.value * soNgayLam.value;
     // console.log(luongThucNhan);
-    document.querySelector("#v-pills-bai01 .result").style.opacity = "1";
+    showElement("#v-pills-bai01 .result");
     hienThiTinhLuong.innerHTML = luongThucNhan.toLocaleString("vi-VN", {
       style: "currency",
       currency: "VND",
@@ -122,7 +141,141 @@ document.getElementById("btnTinhTrungBinh").onclick = () => {
     document.getElementById("soThuNhat").focus();
   } else {
     let giaTriTrungBinh = tongNamSo / 5;
-    document.querySelector("#v-pills-bai02 .result").style.opacity = "1";
+    showElement("#v-pills-bai02 .result");
     hienThiTinhTrungBinh.innerHTML = giaTriTrungBinh.toLocaleString("vi-VN");
+  }
+};
+// =========================================================
+// Bài 3: Quy đổi tiền USD sang VND theo tỷ giá hiện tại
+/** =================[ Sơ đồ 3 khối ]===============
+ *
+ * ĐẦU VÀO: Người dùng nhập vào số tiền USD cần đổi, Tỷ giá mặc định là 23.500, khách hàng nhập tỷ giá mới nếu cần
+ *
+ *
+ * QUÁ TRÌNH XỬ LÝ:
+ * - DOM và gắn sự kiện cho nút Quy đổi tiền
+ * - DOM đến các thẻ tương ứng để lấy dữ liệu số tiền USD cần chuyển
+ * - Kiểm tra dữ liệu nhập vào có phải là Number
+ * - Tính Giá trị quy đổi VND = Số tiền USD x Tỷ giá
+ * - DOM đến thẻ kết quả để hiển thị kết quả Giá trị VND
+ *
+ *
+ *
+ * ĐẦU RA: Hiển thị Giá trị VND sau chuyển đổi trên giao diện
+ *
+ */
+document.getElementById("btnQuyDoiTien").onclick = () => {
+  let soTienUSD = document.getElementById("tienUSD").value * 1;
+  let tyGiaUsdVnd = document.getElementById("tyGiaUsdVnd").value * 1;
+  if (!soTienUSD || isNaN(soTienUSD)) {
+    alert(
+      `Tiền USD = ${soTienUSD}. Vui lòng nhập số tiền và không được để trống!!`
+    );
+    xoaForm("#tienUSD", "#v-pills-bai03 .result");
+  } else {
+    let soTienVND = soTienUSD * tyGiaUsdVnd;
+    showElement("#v-pills-bai03 .result");
+    document.querySelector("#v-pills-bai03 .result .salary").innerHTML =
+      soTienVND.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+  }
+};
+// =========================================================
+// Bài 4: Tích chu vi, Diện tích Hình chữ nhật
+/** =================[ Sơ đồ 3 khối ]===============
+ *
+ * ĐẦU VÀO: Người dùng nhập chiều dài và chiều rộng của hình chữ nhật
+ *
+ *
+ * QUÁ TRÌNH XỬ LÝ:
+ * - Dùng hàm kiểm tra dữ liệu nhập vào đảm bảo là number
+ * - DOM và gắn sự kiện cho nút Tính Diện tích, chu vi
+ * - Kiểm tra dữ liệu rỗng hoặc bằng 0 yêu cầu nhập lại
+ * - Tính Chu vi = (Dài + Rộng)x2
+ * - Tính Diện tích = Dài x Rộng
+ * - DOM đến thẻ kết quả để hiển thị kết quả Diện tích và Chu vi
+ *
+ *
+ * ĐẦU RA: Hiển thị Diện tích và Chu vi của hình chữ nhật trên giao diện
+ *
+ */
+let chieuDai = document.getElementById("chieuDaiHinhCN");
+let chieuRong = document.getElementById("chieuRongHinhCN");
+document.getElementById("btnTinhDienTich").onclick = () => {
+  if (!chieuDai || chieuDai.value * 1 == 0) {
+    alert(
+      `Dài = ${chieuDai.value}. Chiều dài/rộng không được trống hoặc bằng 0. Vui lòng nhập lại chiều Dài !!`
+    );
+    chieuDai.value = "";
+    chieuDai.focus();
+    xoaForm2(
+      "#chieuDaiHinhCN",
+      "#v-pills-bai04 #rsDienTich",
+      "#v-pills-bai04 #rsChuVi"
+    );
+  } else if (!chieuRong || chieuRong.value * 1 == 0) {
+    alert(
+      `Rộng = ${chieuRong.value}. Chiều dài/rộng không được trống hoặc bằng 0. Vui lòng nhập lại chiều Rộng !!`
+    );
+    chieuRong.value = "";
+    chieuRong.focus();
+    xoaForm2(
+      "#chieuRongHinhCN",
+      "#v-pills-bai04 #rsDienTich",
+      "#v-pills-bai04 #rsChuVi"
+    );
+  } else {
+    showElement("#v-pills-bai04 #rsDienTich");
+    document.querySelector("#v-pills-bai04 #rsDienTich .salary").innerHTML =
+      (chieuDai.value * chieuRong.value).toLocaleString("vi-VN") +
+      " cm<sup>2</sup>";
+
+    showElement("#v-pills-bai04 #rsChuVi");
+    document.querySelector("#v-pills-bai04 #rsChuVi .salary").innerHTML =
+      ((chieuDai.value * 1 + chieuRong.value * 1) * 2).toLocaleString("vi-VN") +
+      " cm";
+  }
+};
+// =========================================================
+// Bài 5: Tích tổng 2 ký số
+/** =================[ Sơ đồ 3 khối ]===============
+ *
+ * ĐẦU VÀO: Người dùng nhập số có hai chữ số
+ *
+ *
+ * QUÁ TRÌNH XỬ LÝ:
+ * - DOM và gắn sự kiện cho nút Tính Tổng 2 ký số
+ * - DOM đến các thẻ tương ứng để lấy dữ liệu số tiền USD cần chuyển
+ * - Kiểm tra số nhập vào có phải là Number --> làm tới bài 5 mới nhớ ra nếu chọn input type="number" thì trình duyệt validate sẵn ko cho nhập chữ!! :((( Ôi đời đen quá!!! :D
+ * - Kiểm tra số đúng 2 chữ số và là số Nguyên:
+ *   + kiểm tra hai chữ số bằng cách so sánh giá trị truyệt đối của nó với 10 và 100:  10 <= Math.abs(soNguyen) < 100 &&
+ *   + Ktra số nguyên Number.isInteger(soNguyen) == true
+ * - Tách từng số hàng đơn vị, chục:
+ *    + hàng đơn vị = phép chia lấy dư cho 10 hangDonVi = (soNguyen % 10)
+ *    + số hàng chục: dùng hàm Math.trunc() lấy phần nguyên
+ *           hangChuc = Math.trunc(soNguyen/10)
+ *      + cách 2: hangChuc = (soNguyen - hangDonVi)/10
+ * - Tính Tổng Ký số = hangChuc + hangDonVi
+ * - DOM đến thẻ kết quả để hiển thị kết quả Diện tích và Chu vi
+ *
+ *
+ * ĐẦU RA: Hiển thị kết quả Tổng 2 ký số trên giao diện
+ *
+ */
+document.getElementById("btnTinhTongKySo").onclick = () => {
+  let soNguyen = document.getElementById("soNguyen").value * 1;
+  // kiểm tra số nguyên 2 chữ số
+  if (
+    Number.isInteger(soNguyen) &&
+    Math.abs(soNguyen) >= 10 &&
+    Math.abs(soNguyen) < 100
+  ) {
+    let soHangDonVi = soNguyen % 10;
+    let soHangChuc = Math.trunc(soNguyen / 10);
+    showElement("#v-pills-bai05 .result");
+    document.querySelector("#v-pills-bai05 .result .salary").innerHTML =
+      soHangChuc + soHangDonVi;
+  } else {
+    alert("Nhập sai! Chỉ nhập số nguyên có 2 chữ số");
+    xoaForm("#soNguyen", "#v-pills-bai05 .result");
   }
 };
