@@ -109,6 +109,8 @@ let soThuHai = document.getElementById("soThuHai");
 let soThuBa = document.getElementById("soThuBa");
 let soThuTu = document.getElementById("soThuTu");
 let soThuNam = document.getElementById("soThuNam");
-let hienThiTinhLuong = document.querySelector("#v-pills-bai02 .result .salary");
+let hienThiTinhTrungBinh = document.querySelector(
+  "#v-pills-bai02 .result .salary"
+);
 
 document.getElementById("btnTinhTrungBinh").onclick = () => {};
